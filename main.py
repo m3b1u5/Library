@@ -34,9 +34,7 @@ def add_book(title, author, year, library):
     if title in library:
         update_book(title, author, year, library)
     else:
-        library[title]['author'] = author
-        library[title]['year'] = year
-        library[title]['present'] = None
+        library[title] = {"author": author, "year": year, "present": None}
         print(f"\nИнформация о книге \"{title}\" успешно добавлена в список библиотеки")
 
 
@@ -49,6 +47,7 @@ def main():
 
     book_list_view(library)
     add_book('Словарь', 'Я', 1999, library)
+    add_book('Вариант Бис', 'Сергей Владимирович Анисимов', 2003, library)
     book_list_view(library)
 
 
