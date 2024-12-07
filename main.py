@@ -50,6 +50,9 @@ def issue_book(title, library):
     if title not in library:
         print(f"Книга \"{title}\" не найдена в списке библиотеки.")
         return
+    elif not library[title]["present"]:
+        print(f"Книга \"{title}\" уже выдана.")
+        return
     else:
         library[title]["present"] = False
         print(f"Книга \"{title}\" успешно выдана.")
