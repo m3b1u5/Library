@@ -26,7 +26,7 @@ def update_book(title, author, year, library):
             else:
                 raise ValueError
         except ValueError:
-            print("Введите Да или Нет")
+            print("Введите Да или Нет.")
 
 
 def add_book(title, author, year, library):
@@ -34,7 +34,16 @@ def add_book(title, author, year, library):
         update_book(title, author, year, library)
     else:
         library[title] = {"author": author, "year": year, "present": None}
-        print(f"\nИнформация о книге \"{title}\" успешно добавлена в список библиотеки")
+        print(f"\nИнформация о книге \"{title}\" успешно добавлена в список библиотеки.")
+
+
+def remove_book(title, library):
+    if title not in library:
+        print(f"Книга \"{title}\" не найдена в списке библиотеки.")
+        return
+    else:
+        del library[title]
+        print(f"Книга \"{title}\" успешно удалена из списка библиотеки.")
 
 
 def main():
@@ -47,6 +56,8 @@ def main():
     book_list_view(library)
     add_book('Словарь', 'Я', 1999, library)
     add_book('Вариант Бис', 'Сергей Владимирович Анисимов', 2003, library)
+    remove_book('Словарь', library)
+    remove_book('Словарь', library)
     book_list_view(library)
 
 
