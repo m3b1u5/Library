@@ -50,6 +50,9 @@ def issue_book(title, library):
     if title not in library:
         print(f"Книга \"{title}\" не найдена в списке библиотеки.")
         return
+    elif library[title]["present"] is None:
+        print(f"Статус книги \"{title}\" не определен.")
+        return
     elif not library[title]["present"]:
         print(f"Книга \"{title}\" уже выдана.")
         return
@@ -69,7 +72,7 @@ def return_book(title, library):
 
 def main():
     library = {
-        "Python для чайников": {"author": "Алексей Рыбицкий", "year": 2024, "present": True},
+        "Python для чайников": {"author": "Алексей Рыбицкий", "year": 2024, "present": None},
         "Словарь": {"author": "КиМ", "year": 998, "present": False},
         "Красненькая такая": {"author": "Автор", "year": 1, "present": True},
     }
