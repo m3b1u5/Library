@@ -18,7 +18,6 @@ def update_book(title, author, year, library):
             if update_required == 'да':
                 library[title]['author'] = author
                 library[title]['year'] = year
-                library[title]['present'] = None
                 print(f"Информация о книге \"{title}\" обновлена.")
                 return
             elif update_required == 'нет':
