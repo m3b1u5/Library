@@ -8,7 +8,7 @@ def book_list_view(library):
         print("\nСписок книг по названию:\n" + '_' * 50)
         for book in library:
             print(book)
-        print('_' * 50)
+        print('_' * 50 + '\n')
 
 
 def update_book(title, author, year, library):
@@ -34,7 +34,7 @@ def add_book(title, author, year, library):
         update_book(title, author, year, library)
     else:
         library[title] = {"author": author, "year": year, "present": None}
-        print(f"\nИнформация о книге \"{title}\" успешно добавлена в список библиотеки.")
+        print(f"Информация о книге \"{title}\" успешно добавлена в список библиотеки.")
 
 
 def remove_book(title, library):
@@ -46,6 +46,24 @@ def remove_book(title, library):
         print(f"Книга \"{title}\" успешно удалена из списка библиотеки.")
 
 
+def issue_book(title, library):
+    if title not in library:
+        print(f"Книга \"{title}\" не найдена в списке библиотеки.")
+        return
+    else:
+        library[title]["present"] = False
+        print(f"Книга \"{title}\" успешно выдана.")
+
+
+def return_book(title, library):
+    if title not in library:
+        print(f"Книга, \"{title}\" с другой библиотеки, невозможно вернуть ее в список.")
+        return
+    else:
+        library[title]["present"] = True
+        print(f"Книга \"{title}\" успешно возвращена.")
+
+
 def main():
     library = {
         "Python для чайников": {"author": "Алексей Рыбицкий", "year": 2024, "present": True},
@@ -54,11 +72,15 @@ def main():
     }
 
     book_list_view(library)
-    add_book('Словарь', 'Я', 1999, library)
+    # add_book('Словарь', 'Я', 1999, library)
     add_book('Вариант Бис', 'Сергей Владимирович Анисимов', 2003, library)
     remove_book('Словарь', library)
     remove_book('Словарь', library)
     book_list_view(library)
+    issue_book('Python для чайников', library)
+    issue_book('C++ для чайников', library)
+    return_book('Python для чайников', library)
+    return_book('C++ для чайников', library)
 
 
 main()
