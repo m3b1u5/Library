@@ -75,8 +75,9 @@ def find_book(title, library):
         print(f"Книга \"{title}\" не найдена в списке библиотеки.")
         return
     else:
-        status = "В наличии" if library[title]["present"] else (
-            "Неизвестно" if library[title]["present"] is None else "Отсутствует")
+        status = "Книга доступна" if library[title]["present"] \
+            else ("Книга в библиотеке, но ее статус не определен" if library[title]["present"] is None
+                  else "Книга выдана")
         print(f"""
 Название: {title} 
 Автор: {library[title]["author"]}
@@ -89,7 +90,7 @@ def main():
     library = {
         "Python для чайников": {"author": "Алексей Рыбицкий", "year": 2024, "present": None},
         "Словарь": {"author": "КиМ", "year": 998, "present": False},
-        "Красненькая такая": {"author": "Автор", "year": 1, "present": True},
+        "Красненькая такая": {"author": "Автор", "year": 1, "present": None},
     }
 
     book_list_view(library)
