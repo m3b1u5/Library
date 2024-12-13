@@ -70,6 +70,21 @@ def return_book(title, library):
         print(f"Книга \"{title}\" успешно возвращена.")
 
 
+def find_book(title, library):
+    if title not in library:
+        print(f"Книга \"{title}\" не найдена в списке библиотеки.")
+        return
+    else:
+        status = "В наличии" if library[title]["present"] else (
+            "Неизвестно" if library[title]["present"] is None else "Отсутствует")
+        print(f"""
+Название: {title} 
+Автор: {library[title]["author"]}
+Год Издания: {library[title]["year"]}
+Наличие: {status}
+""")
+
+
 def main():
     library = {
         "Python для чайников": {"author": "Алексей Рыбицкий", "year": 2024, "present": None},
@@ -80,13 +95,19 @@ def main():
     book_list_view(library)
     # add_book('Словарь', 'Я', 1999, library)
     add_book('Вариант Бис', 'Сергей Владимирович Анисимов', 2003, library)
+
     remove_book('Словарь', library)
     remove_book('Словарь', library)
     book_list_view(library)
+
     issue_book('Python для чайников', library)
     issue_book('C++ для чайников', library)
+
     return_book('Python для чайников', library)
     return_book('C++ для чайников', library)
+
+    find_book('Красненькая такая', library)
+    find_book('C++ для чайников', library)
 
 
 main()
